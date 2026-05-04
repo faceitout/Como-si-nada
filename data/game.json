@@ -1,0 +1,251 @@
+{
+  "startScene": "start",
+  "scenes": [
+    {
+      "id": "start",
+      "type": "start",
+      "image": "assets/images/SVG/Pantalla_01.svg",
+      "title": "COMO SI NADA",
+      "subtitle": "Empatizar con lo que no siempre se ve",
+      "bodyText": "Una experiencia interactiva sobre la empatía y el malestar invisible",
+      "next": "wake-choice",
+      "topBar": false
+    },
+    {
+      "id": "wake-choice",
+      "type": "choice",
+      "image": "assets/images/SVG/Pantalla_01.svg",
+      "bodyText": "Suena la alarma. Empiezas el día con el cuerpo pesado y una sensación de malestar que no sabes explicar del todo.",
+      "options": [
+        {
+          "label": "ME LEVANTO"
+        },
+        {
+          "label": "ME QUEDO EN LA CAMA"
+        }
+      ],
+      "correctOption": 0,
+      "successNext": "bedroom-closet-transition",
+      "failNext": "fail-wake",
+      "topBar": true
+    },
+    {
+      "id": "bedroom-closet-transition",
+      "type": "narrative",
+      "image": "assets/images/SVG/Pantalla_02.svg",
+      "bodyText": "Te pones en pie y caminas hasta el armario. El cuerpo está incómodo y cualquier pequeña decisión puede hacer el día más difícil.",
+      "next": "closet-choice",
+      "topBar": true
+    },
+    {
+      "id": "closet-choice",
+      "type": "choice",
+      "image": "assets/images/SVG/Pantalla_03.svg",
+      "bodyText": "Tienes que vestirte, pero notas el cuerpo sensible e hinchado. ¿Qué eliges?",
+      "options": [
+        {
+          "label": "ROPA SUELTA Y CÓMODA"
+        },
+        {
+          "label": "ROPA AJUSTADA"
+        }
+      ],
+      "correctOption": 0,
+      "successNext": "kitchen-choice",
+      "failNext": "fail-clothes",
+      "topBar": true
+    },
+    {
+      "id": "kitchen-choice",
+      "type": "choice",
+      "image": "assets/images/SVG/Pantalla_04.svg",
+      "bodyText": "Llegas a la cocina con el estómago revuelto. Notas náuseas y el malestar empieza a hacerse más evidente. ¿Qué haces?",
+      "options": [
+        {
+          "label": "DESAYUNO COMPLETO"
+        },
+        {
+          "label": "PREFIERO ESPERAR, NO ME ENCUENTRO BIEN"
+        }
+      ],
+      "correctOption": 1,
+      "successNext": "elevator",
+      "failNext": "fail-kitchen",
+      "topBar": true
+    },
+    {
+      "id": "elevator",
+      "type": "narrative",
+      "image": "assets/images/SVG/Pantalla_05.svg",
+      "bodyText": "Sales de casa y bajas en el ascensor. El día continúa y tú intentas seguir adelante como si nada.",
+      "next": "street",
+      "topBar": true
+    },
+    {
+      "id": "street",
+      "type": "narrative",
+      "image": "assets/images/SVG/Pantalla_06.svg",
+      "bodyText": "Empiezas el trayecto. Todo a tu alrededor parece normal, pero el malestar sigue acompañándote en silencio.",
+      "next": "metro-choice",
+      "topBar": true
+    },
+    {
+      "id": "metro-choice",
+      "type": "choice",
+      "image": "assets/images/SVG/Pantalla_07.svg",
+      "bodyText": "En el metro empiezas a marearte. Te notas débil, con el cuerpo inestable, y el trayecto todavía no ha terminado. ¿Qué haces?",
+      "options": [
+        {
+          "label": "AGUANTO DE PIE"
+        },
+        {
+          "label": "INTENTO PEDIR UN ASIENTO"
+        }
+      ],
+      "correctOption": 1,
+      "successNext": "office-hallway",
+      "failNext": "fail-metro",
+      "topBar": true
+    },
+    {
+      "id": "office-hallway",
+      "type": "narrative",
+      "image": "assets/images/SVG/Pantalla_08.svg",
+      "bodyText": "Llegas al trabajo. Empieza la jornada y toca seguir cumpliendo con lo esperado, aunque el cuerpo no acompañe.",
+      "next": "office-choice-1",
+      "topBar": true
+    },
+    {
+      "id": "office-choice-1",
+      "type": "choice",
+      "image": "assets/images/SVG/Pantalla_09.svg",
+      "bodyText": "Pasan las horas y el malestar continúa. El dolor se intensifica y concentrarte cada vez cuesta más. Sientes que necesitas hacer algo para poder seguir. ¿Qué haces?",
+      "options": [
+        {
+          "label": "ME TOMO UN ANTIINFLAMATORIO"
+        },
+        {
+          "label": "INTENTO AGUANTAR SIN TOMAR NADA"
+        }
+      ],
+      "correctOption": 0,
+      "successNext": "office-mid",
+      "failNext": "fail-office-1",
+      "topBar": true
+    },
+    {
+      "id": "office-mid",
+      "type": "narrative",
+      "image": "assets/images/SVG/Pantalla_10.svg",
+      "bodyText": "La jornada avanza. Sigues en tu puesto, intentando rendir igual que siempre, aunque el cansancio y el dolor se acumulan.",
+      "next": "office-choice-2",
+      "topBar": true
+    },
+    {
+      "id": "office-choice-2",
+      "type": "choice",
+      "image": "assets/images/SVG/Pantalla_11.svg",
+      "bodyText": "Han pasado más horas y sientes que el cuerpo ya no puede más. Querrías irte, pero el día aún no ha terminado. ¿Qué haces?",
+      "options": [
+        {
+          "label": "ME QUEDO HASTA TERMINAR LA JORNADA"
+        },
+        {
+          "label": "ME VOY ANTES PORQUE NO AGUANTO MÁS"
+        }
+      ],
+      "correctOption": 0,
+      "successNext": "office-final-visual",
+      "failNext": "fail-office-2",
+      "topBar": true
+    },
+    {
+      "id": "office-final-visual",
+      "type": "narrative",
+      "image": "assets/images/SVG/Pantalla_11.svg",
+      "bodyText": "Después de horas de esfuerzo, el cuerpo está agotado. Has conseguido llegar hasta el final del día cargando con un malestar que desde fuera casi no se ve.",
+      "next": "final",
+      "topBar": true
+    },
+    {
+      "id": "final",
+      "type": "final",
+      "image": "assets/images/SVG/Pantalla_mancha.svg",
+      "slides": [
+        {
+          "headlineBlocks": [
+            "ENHORABUENA",
+            "HAS CONSEGUIDO SUPERAR\nTU PRIMER DÍA DE REGLA"
+          ]
+        },
+        {
+          "bodyBlocks": [
+            "Lo que acabas de vivir forma parte de la rutina de muchas personas.",
+            "Aunque a menudo pase desapercibido, convivir con la menstruación también implica dolor, cansancio, incomodidad y seguir adelante como si nada."
+          ]
+        },
+        {
+          "bodyBlocks": [
+            "Empatizar también es comprender lo que no siempre se ve."
+          ],
+          "buttonText": "VOLVER A JUGAR"
+        }
+      ],
+      "topBar": false
+    },
+    {
+      "id": "fail-wake",
+      "type": "fail",
+      "image": "assets/images/SVG/Pantalla_mancha.svg",
+      "title": "NO HAS SUPERADO TU DÍA",
+      "bodyText": "A veces, aunque el cuerpo pida parar, la rutina obliga a seguir adelante.",
+      "buttonText": "VOLVER A JUGAR",
+      "topBar": false
+    },
+    {
+      "id": "fail-clothes",
+      "type": "fail",
+      "image": "assets/images/SVG/Pantalla_mancha.svg",
+      "title": "NO HAS SUPERADO TU DÍA",
+      "bodyText": "Cuando el cuerpo está sensible, la incomodidad también se siente en la ropa.",
+      "buttonText": "VOLVER A JUGAR",
+      "topBar": false
+    },
+    {
+      "id": "fail-kitchen",
+      "type": "fail",
+      "image": "assets/images/SVG/Pantalla_mancha.svg",
+      "title": "NO HAS SUPERADO TU DÍA",
+      "bodyText": "No siempre el cuerpo está preparado para seguir el ritmo normal desde primera hora.",
+      "buttonText": "VOLVER A JUGAR",
+      "topBar": false
+    },
+    {
+      "id": "fail-metro",
+      "type": "fail",
+      "image": "assets/images/SVG/Pantalla_mancha.svg",
+      "title": "NO HAS SUPERADO TU DÍA",
+      "bodyText": "A veces seguir adelante también implica reconocer que necesitas ayuda.",
+      "buttonText": "VOLVER A JUGAR",
+      "topBar": false
+    },
+    {
+      "id": "fail-office-1",
+      "type": "fail",
+      "image": "assets/images/SVG/Pantalla_mancha.svg",
+      "title": "NO HAS SUPERADO TU DÍA",
+      "bodyText": "Ignorar el malestar no hace que desaparezca.",
+      "buttonText": "VOLVER A JUGAR",
+      "topBar": false
+    },
+    {
+      "id": "fail-office-2",
+      "type": "fail",
+      "image": "assets/images/SVG/Pantalla_mancha.svg",
+      "title": "NO HAS SUPERADO TU DÍA",
+      "bodyText": "Muchas veces, incluso con dolor, la rutina y las obligaciones no se detienen.",
+      "buttonText": "VOLVER A JUGAR",
+      "topBar": false
+    }
+  ]
+}

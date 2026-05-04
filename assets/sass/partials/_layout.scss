@@ -1,0 +1,49 @@
+@use "variables" as *;
+
+.page {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: $color-background;
+}
+
+.game-shell {
+  width: 100%;
+  height: 100vh;
+  padding: clamp(14px, 2vh, 28px) clamp(14px, 2vw, 34px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: $color-background;
+}
+
+.game-app {
+  width: min(92vw, $game-max-width, calc((100vh - 56px) * 16 / 9));
+  aspect-ratio: 16 / 9;
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: $game-screen-radius;
+  background: $color-black;
+}
+
+#gameApp {
+  border-radius: $game-screen-radius;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .game-shell {
+    padding: 12px;
+  }
+
+  .game-app {
+    width: min(96vw, calc((100vh - 24px) * 16 / 9));
+    border-radius: 18px;
+  }
+
+  #gameApp {
+    border-radius: 18px;
+  }
+}

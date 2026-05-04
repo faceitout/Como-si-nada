@@ -1,0 +1,274 @@
+@use "variables" as *;
+
+.start-card__play,
+.end-card__button {
+  margin-top: 6px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: $color-white;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  gap: 14px;
+  transition:
+    transform $transition-fast,
+    opacity $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-2px);
+  }
+
+  &:hover .play-circle,
+  &:focus-visible .play-circle {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.26);
+  }
+
+  &:hover .start-card__play-label,
+  &:focus-visible .start-card__play-label,
+  &:hover .end-card__button-label,
+  &:focus-visible .end-card__button-label {
+    text-decoration: underline;
+    text-underline-offset: 7px;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.start-card__play-label,
+.end-card__button-label {
+  font-size: clamp(1.1rem, 1.75vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.end-card__button-label {
+  font-size: clamp(1.4rem, 2.4vw, 2.6rem);
+}
+
+.play-circle {
+  position: relative;
+  width: clamp(56px, 5.6vw, 78px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: $color-white;
+  display: block;
+  transition:
+    transform $transition-fast,
+    box-shadow $transition-fast;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    width: 0;
+    height: 0;
+    transform: translate(-50%, -50%);
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 22px solid $color-black;
+  }
+}
+
+.start-card__instructions {
+  transition:
+    background $transition-fast,
+    transform $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba(255, 255, 255, 0.16);
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.top-bar__restart {
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: clamp(0.75rem, 1.12vw, 1.15rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  transition:
+    background $transition-fast,
+    transform $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.top-bar__icon {
+  width: 26px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition:
+    background $transition-fast,
+    transform $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.icon {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 22px;
+
+  &--pause {
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      width: 5px;
+      height: 18px;
+      border-radius: 2px;
+      background: currentColor;
+    }
+
+    &::before {
+      left: 4px;
+    }
+
+    &::after {
+      right: 4px;
+    }
+  }
+
+  &--close {
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 1px;
+      width: 20px;
+      height: 4px;
+      border-radius: 2px;
+      background: currentColor;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.choice-option {
+  min-height: 58px;
+  padding: 10px clamp(18px, 2vw, 32px);
+  border: 0;
+  background: transparent;
+  color: $color-text;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1ch;
+  font-size: clamp(0.9rem, 1.28vw, 1.35rem);
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  transition:
+    background $transition-fast,
+    transform $transition-fast,
+    box-shadow $transition-fast;
+
+  &:first-child {
+    border-bottom: 1.5px solid rgba(0, 0, 0, 0.48);
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: rgba(0, 0, 0, 0.12);
+    box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.08);
+  }
+
+  &:active {
+    background: rgba(0, 0, 0, 0.18);
+  }
+
+  &__number {
+    flex: 0 0 auto;
+  }
+}
+
+.modal__button {
+  min-height: 42px;
+  padding: 10px 18px;
+  border: 1.5px solid $color-black;
+  border-radius: 999px;
+  background: $color-white;
+  color: $color-black;
+  cursor: pointer;
+  font-weight: 800;
+  transition:
+    background $transition-fast,
+    color $transition-fast,
+    transform $transition-fast;
+
+  &:hover,
+  &:focus-visible,
+  &--primary {
+    background: $color-black;
+    color: $color-white;
+  }
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .choice-option {
+    min-height: 44px;
+    font-size: clamp(0.7rem, 2vw, 0.95rem);
+    padding: 8px 14px;
+  }
+}
