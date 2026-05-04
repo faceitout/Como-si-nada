@@ -1,6 +1,7 @@
 "use strict";
 
 const GAME_DATA_PATH = "data/game.json";
+const MUSIC_SRC = "assets/music/Crossy Road Castle OST - 09 Let's Bounce (Construction Remix) - Crossy Road.mp3";
 
 const app = document.querySelector("#gameApp");
 const modalRoot = document.querySelector("#modalRoot");
@@ -16,9 +17,13 @@ let activeTextTimeline = null;
 let activeSceneTimeline = null;
 let isTransitioning = false;
 
+let backgroundMusic = null;
+let isMusicMuted = false;
+
 async function initGame() {
   try {
     initCustomCursor();
+    initBackgroundMusic();
 
     const response = await fetch(GAME_DATA_PATH);
 
@@ -52,8 +57,75 @@ async function initGame() {
 }
 
 /* =========================
+   MÚSICA
+========================= */
+
+function initBackgroundMusic() {
+  if (backgroundMusic) return;
+
+  backgroundMusic = new Audio(MUSIC_SRC);
+  backgroundMusic.loop = true;
+  backgroundMusic.preload = "auto";
+  backgroundMusic.volume = 0.22;
+  backgroundMusic.muted = isMusicMuted;
+}
+
+function playBackgroundMusic() {
+  if (!backgroundMusic) {
+    initBackgroundMusic();
+  }
+
+  if (!backgroundMusic || isMusicMuted) {
+    return;
+  }
+
+  backgroundMusic.play().catch((error) => {
+    console.warn("La música no pudo reproducirse todavía:", error);
+  });
+}
+
+function stopBackgroundMusic() {
+  if (!backgroundMusic) return;
+
+  backgroundMusic.pause();
+  backgroundMusic.currentTime = 0;
+}
+
+function toggleMusic() {
+  if (!backgroundMusic) {
+    initBackgroundMusic();
+  }
+
+  isMusicMuted = !isMusicMuted;
+
+  if (backgroundMusic) {
+    backgroundMusic.muted = isMusicMuted;
+
+    if (!isMusicMuted) {
+      playBackgroundMusic();
+    }
+  }
+
+  updateMusicButton();
+}
+
+function updateMusicButton() {
+  const button = app.querySelector("[data-action='toggle-music']");
+
+  if (!button) return;
+
+  button.setAttribute("aria-label", isMusicMuted ? "Activar música" : "Silenciar música");
+  button.setAttribute("aria-pressed", String(!isMusicMuted));
+
+  const icon = button.querySelector("[data-music-icon]");
+
+  if (icon) {
+    icon.className = `icon icon--sound ${isMusicMuted ? "is-muted" : ""}`;
+  }
+}
+
+/* =========================
    CURSOR CUSTOM CON GSAP
-   Sin hover gris
 ========================= */
 
 function initCustomCursor() {
@@ -229,7 +301,6 @@ function getTypewriterDuration(text) {
 
 /* =========================
    TRANSICIÓN SUAVE SLIDE
-   Sin parón en negro
 ========================= */
 
 function canAnimateMotion() {
@@ -474,6 +545,8 @@ function renderScene({ animateIn = true, animateText = true } = {}) {
     if (animateText) {
       animateSceneText();
     }
+
+    updateMusicButton();
   });
 }
 
@@ -529,6 +602,10 @@ function renderTopBar() {
     <nav class="top-bar" aria-label="Controles del juego">
       <button class="top-bar__restart" type="button" data-action="restart">
         VOLVER A EMPEZAR
+      </button>
+
+      <button class="top-bar__icon top-bar__music" type="button" data-action="toggle-music" aria-label="${isMusicMuted ? "Activar música" : "Silenciar música"}" aria-pressed="${String(!isMusicMuted)}">
+        <span class="icon icon--sound ${isMusicMuted ? "is-muted" : ""}" data-music-icon aria-hidden="true"></span>
       </button>
 
       <button class="top-bar__icon" type="button" data-action="pause" aria-label="Pausar juego">
@@ -749,6 +826,11 @@ function handleGameClick(event) {
     return;
   }
 
+  if (action === "toggle-music") {
+    toggleMusic();
+    return;
+  }
+
   if (action === "final-prev") {
     changeFinalSlide(-1);
     return;
@@ -767,6 +849,7 @@ function startGame() {
     return;
   }
 
+  playBackgroundMusic();
   goToScene(startScene.next);
 }
 
@@ -858,6 +941,11 @@ function changeFinalSlide(step) {
 
       const nextContent = app.querySelector(".final-sequence__content");
       const nextControls = app.querySelector(".final-sequence__controls");
+      const nextTextElements = app.querySelectorAll(".final-sequence [data-typewriter]");
+
+      gsap.set(nextTextElements, {
+        autoAlpha: 0
+      });
 
       if (nextContent) {
         gsap.fromTo(
@@ -924,6 +1012,7 @@ function goToScene(sceneId) {
 }
 
 function restartGame() {
+  stopBackgroundMusic();
   goToScene(gameData.startScene);
 }
 

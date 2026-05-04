@@ -272,3 +272,59 @@
     padding: 8px 14px;
   }
 }
+
+/* =========================
+   ICONO SONIDO / SILENCIO
+========================= */
+
+.top-bar__music {
+  min-width: 28px;
+}
+
+.icon--sound {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.icon--sound::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 7px;
+  width: 9px;
+  height: 8px;
+  background: currentColor;
+  clip-path: polygon(
+    0 22%,
+    42% 22%,
+    100% 0,
+    100% 100%,
+    42% 78%,
+    0 78%
+  );
+}
+
+.icon--sound::after {
+  content: "";
+  position: absolute;
+  right: 1px;
+  top: 5px;
+  width: 9px;
+  height: 12px;
+  border: 2px solid currentColor;
+  border-left: 0;
+  border-radius: 0 999px 999px 0;
+}
+
+.icon--sound.is-muted::after {
+  right: 2px;
+  top: 10px;
+  width: 18px;
+  height: 3px;
+  border: 0;
+  border-radius: 999px;
+  background: currentColor;
+  transform: rotate(45deg);
+}

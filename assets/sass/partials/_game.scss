@@ -545,3 +545,310 @@
     height: 8px;
   }
 }
+
+/* =========================
+   RESPONSIVE MÓVIL VERTICAL
+========================= */
+
+@media (max-width: 700px) and (orientation: portrait) {
+  .stage {
+    --scene-mobile-height: min(56.25vw, 248px);
+
+    width: 100%;
+    min-height: calc(100svh - 24px);
+    aspect-ratio: auto;
+    border-radius: 18px;
+    background: $color-black;
+    overflow: hidden;
+  }
+
+  .scene-bg {
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: var(--scene-mobile-height);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* En fallo y final, la mancha ocupa toda la pantalla vertical */
+  .stage.is-fail,
+  .stage.is-final {
+    .scene-bg {
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-size: auto 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  /* =========================
+     INICIO EN MÓVIL
+  ========================= */
+
+  .start-card {
+    top: calc(var(--scene-mobile-height) / 2);
+    left: 50%;
+    width: 78%;
+    max-height: none;
+    padding: 18px 16px;
+    border-radius: 34px;
+    gap: 10px;
+  }
+
+  .start-card__title {
+    font-size: clamp(1.35rem, 8vw, 2rem);
+    line-height: 0.95;
+  }
+
+  .start-card__subtitle,
+  .start-card__description {
+    font-size: 0.62rem;
+    line-height: 1.3;
+  }
+
+  .start-card__divider {
+    height: 2px;
+    width: 58%;
+  }
+
+  .start-card__instructions {
+    font-size: 0.68rem;
+  }
+
+  /* =========================
+     BARRA SUPERIOR
+  ========================= */
+
+  .top-bar {
+    top: 8px;
+    right: 8px;
+    min-height: 28px;
+    padding: 0 7px;
+    gap: 6px;
+    border-radius: 7px;
+    font-size: 0.58rem;
+  }
+
+  .top-bar__restart {
+    font-size: 0.58rem;
+    letter-spacing: 0.03em;
+  }
+
+  .top-bar__icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .icon--pause,
+  .icon--close,
+  .icon--sound {
+    transform: scale(0.78);
+  }
+
+  /* =========================
+     PANEL DE TEXTO
+  ========================= */
+
+  .dialog {
+    left: 10px;
+    right: 10px;
+    top: calc(var(--scene-mobile-height) + 12px);
+    bottom: auto;
+    min-height: auto;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.94);
+  }
+
+  .dialog__text {
+    padding: 14px 16px;
+    font-size: 0.82rem;
+    line-height: 1.22;
+  }
+
+  /* Narrativa: texto + flecha */
+  .dialog--narrative {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 54px;
+  }
+
+  .dialog--narrative .dialog__text {
+    min-height: 82px;
+  }
+
+  /* Decisión: texto arriba, opciones debajo, flecha abajo */
+  .dialog--choice {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 54px;
+  }
+
+  .dialog--choice .dialog__text {
+    height: auto;
+    min-height: 92px;
+    border-right: 0;
+    border-bottom: 1.5px solid $color-panel-border;
+  }
+
+  .dialog__choices {
+    display: grid;
+    grid-template-rows: auto auto;
+  }
+
+  .choice-option {
+    min-height: 50px;
+    padding: 10px 16px;
+    font-size: 0.78rem;
+    line-height: 1.15;
+    justify-content: flex-start;
+  }
+
+  .choice-option__number {
+    margin-right: 6px;
+  }
+
+  .dialog__arrow {
+    width: 100%;
+    min-height: 54px;
+    border-left: 0;
+    border-top: 1.5px solid $color-panel-border;
+    font-size: 3.4rem;
+  }
+
+  .dialog__arrow::before {
+    transform: translateY(-4px);
+  }
+
+  .dialog--choice .dialog__arrow {
+    border-left: 0;
+    border-top-color: $color-panel-border;
+  }
+
+  /* =========================
+     FINAL / FALLO
+  ========================= */
+
+  .end-card {
+    padding: 24px 22px;
+    gap: 14px;
+  }
+
+  .end-card__title {
+    max-width: 86%;
+    font-size: clamp(1.2rem, 6vw, 1.8rem);
+    line-height: 1.12;
+  }
+
+  .end-card__divider {
+    width: min(58%, 180px);
+    height: 2px;
+  }
+
+  .end-card__body {
+    max-width: 82%;
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+
+  .final-sequence {
+    width: 86%;
+    min-height: 76%;
+  }
+
+  .final-sequence__content {
+    gap: 14px;
+  }
+
+  .final-sequence__headline {
+    max-width: 88%;
+    font-size: clamp(1.45rem, 8vw, 2.2rem);
+    line-height: 1.1;
+  }
+
+  .final-sequence__body {
+    max-width: 90%;
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+
+  .final-sequence__controls {
+    gap: 14px;
+  }
+
+  .final-sequence__arrow {
+    width: 44px;
+    height: 44px;
+    font-size: 1.7rem;
+  }
+
+  .final-sequence__dot {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* =========================
+   FIX INICIO MÓVIL VERTICAL
+========================= */
+
+@media (max-width: 700px) and (orientation: portrait) {
+  .stage.is-start {
+    min-height: calc(100svh - 24px);
+    background: $color-black;
+
+    .scene-bg {
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.75;
+    }
+
+    .start-card {
+      top: 50%;
+      left: 50%;
+      width: min(78vw, 310px);
+      max-height: none;
+      transform: translate(-50%, -50%);
+      padding: 24px 18px;
+      border-radius: 36px;
+      gap: 11px;
+    }
+
+    .start-card__title {
+      font-size: clamp(1.7rem, 10vw, 2.45rem);
+      line-height: 0.95;
+      letter-spacing: 0.08em;
+    }
+
+    .start-card__subtitle,
+    .start-card__description {
+      max-width: 30ch;
+      font-size: 0.66rem;
+      line-height: 1.35;
+    }
+
+    .start-card__divider {
+      width: 58%;
+      height: 2px;
+    }
+
+    .start-card__play-label {
+      font-size: 0.95rem;
+      line-height: 1.1;
+    }
+
+    .play-circle {
+      width: 58px;
+      height: 58px;
+    }
+
+    .start-card__instructions {
+      font-size: 0.68rem;
+    }
+  }
+}

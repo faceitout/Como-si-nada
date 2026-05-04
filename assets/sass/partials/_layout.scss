@@ -11,16 +11,17 @@
 .game-shell {
   width: 100%;
   min-height: 100vh;
-  padding: clamp(14px, 2vh, 28px) clamp(14px, 2vw, 34px);
+  padding: 32px 24px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   overflow: visible;
   background: $color-background;
 }
 
 .game-app {
-  width: min(92vw, $game-max-width, calc((100vh - 56px) * 16 / 9));
+  width: 72vw;
+  max-width: 980px;
   aspect-ratio: 16 / 9;
   position: relative;
   flex-shrink: 0;
@@ -34,13 +35,50 @@
   overflow: hidden;
 }
 
-@media (max-width: 900px) {
+/* =========================
+   MÓVIL VERTICAL
+========================= */
+
+@media (max-width: 700px) and (orientation: portrait) {
+  .page {
+    min-height: 100svh;
+  }
+
   .game-shell {
-    padding: 12px;
+    min-height: 100svh;
+    padding: 12px 10px;
+    align-items: flex-start;
   }
 
   .game-app {
-    width: min(96vw, calc((100vh - 24px) * 16 / 9));
+    width: min(94vw, 440px);
+    max-width: 440px;
+    min-height: calc(100svh - 24px);
+    aspect-ratio: auto;
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  #gameApp {
+    border-radius: 18px;
+    overflow: hidden;
+  }
+}
+
+/* =========================
+   TABLET / MÓVIL HORIZONTAL
+========================= */
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .game-shell {
+    padding: 12px;
+    align-items: center;
+  }
+
+  .game-app {
+    width: min(94vw, calc((100svh - 24px) * 16 / 9));
+    max-width: none;
+    aspect-ratio: 16 / 9;
     border-radius: 18px;
   }
 
